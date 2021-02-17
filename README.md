@@ -1,5 +1,5 @@
 # jumpgame
-test
+
 ## Project setup
 ```
 npm install
