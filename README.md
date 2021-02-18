@@ -1,4 +1,6 @@
-# jumpgame
+# JumpGame v0.1
+
+My first game rebuild from Vanilla JS into Vue.js
 
 ## Project setup
 ```
