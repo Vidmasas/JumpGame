@@ -21,6 +21,8 @@ export default {
       activeJump: false,
       counter: 0,
       score: 0,
+      blockSpeed: 2,
+      loopSpeed: 200
     }
   },
   mounted() {
@@ -40,6 +42,14 @@ export default {
         this.score = Math.floor(this.counter/8);
       }
     }, 1)
+
+    setInterval(() => {
+      this.blockSpeed = Math.random() + this.blockSpeed;
+      blockElement.style.animationDuration = this.blockSpeed + "s";
+      console.log(blockElement.style.animationDuration = this.blockSpeed + "s")
+      this.loopSpeed = parseFloat(blockElement.style.animationDuration)*100;
+      console.log(this.loopSpeed)
+    },this.loopSpeed)
   },
   methods: {
     jumpAction() {
@@ -49,13 +59,13 @@ export default {
           },
           500)
       return this.activeJump = !this.activeJump;
-    }
+    },
   },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss">
 .world {
   margin: auto;
   width: 1000px;
@@ -81,12 +91,17 @@ export default {
   position: relative;
   top: 310px;
   left: 480px;
-  animation: block linear 2s infinite;
+  animation: block linear infinite;
 }
 
 @keyframes block {
   0%{left: 900px}
   100%{left: -40px}
+  //@for $i from 1 through 10 {
+  //#{($i * 0.5%)} {
+  //  transform: rotate((480 * 1deg));
+  // }
+  //}
 }
 
 @keyframes jump {
