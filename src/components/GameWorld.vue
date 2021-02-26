@@ -21,35 +21,32 @@ export default {
       activeJump: false,
       counter: 0,
       score: 0,
-      blockSpeed: 2,
-      loopSpeed: 200
+      jumpSpeed: 1000, //ms
+      gameSpeed: 3, //s
     }
   },
   mounted() {
-    let characterElement = document.getElementById("character");
-    let blockElement = document.getElementById("block");
+    const characterElement = document.getElementById("character");
+    const blockElement = document.getElementById("block");
+    blockElement.style.animationDuration = this.gameSpeed + "s";
 
     setInterval(() => {
-      const characterTop = parseInt(window.getComputedStyle(characterElement).getPropertyValue("top"));
-      const blockLeft = parseInt(window.getComputedStyle(blockElement).getPropertyValue("left"));
-      if (blockLeft < 20 && blockLeft > 0 && characterTop >= 310) {
+      let characterTop = parseInt(window.getComputedStyle(characterElement).getPropertyValue("top"));
+      let characterWidth = parseInt(window.getComputedStyle(characterElement).getPropertyValue("width"));
+      let blockTop = parseInt(window.getComputedStyle(blockElement).getPropertyValue("top"));
+      let blockLeft = parseInt(window.getComputedStyle(blockElement).getPropertyValue("left"));
+      let blockWidth = parseInt(window.getComputedStyle(blockElement).getPropertyValue("width"));
+      if (blockLeft < characterWidth && blockLeft > 0 && characterTop >= blockTop) {
         blockElement.style.animation = "none";
         blockElement.style.display = "none";
         alert("You lose, your score is " + this.score);
         this.score = 0;
-      } else if (blockLeft < 20 && blockLeft > 0 && characterTop < 310) {
+      } else if (blockLeft < characterWidth && blockLeft > 0 && characterTop < blockTop) {
         this.counter++;
-        this.score = Math.floor(this.counter/8);
+        this.score = Math.floor(this.counter/this.gameSpeed/(blockWidth/10));
       }
     }, 1)
 
-    setInterval(() => {
-      this.blockSpeed = Math.random() + this.blockSpeed;
-      blockElement.style.animationDuration = this.blockSpeed + "s";
-      console.log(blockElement.style.animationDuration = this.blockSpeed + "s")
-      this.loopSpeed = parseFloat(blockElement.style.animationDuration)*100;
-      console.log(this.loopSpeed)
-    },this.loopSpeed)
   },
   methods: {
     jumpAction() {
@@ -57,14 +54,13 @@ export default {
       setTimeout(() => {
             return that.activeJump = !that.activeJump;
           },
-          500)
+          this.jumpSpeed)
       return this.activeJump = !this.activeJump;
     },
   },
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 .world {
   margin: auto;
@@ -81,17 +77,18 @@ export default {
 }
 
 .jump {
-  animation: jump linear 500ms;
+  animation: jump linear 1s;
 }
 
 #block {
   height: 40px;
   width: 40px;
-  background-color: green;
   position: relative;
   top: 310px;
   left: 480px;
   animation: block linear infinite;
+  animation-duration: 2s;
+  background-color: green;
 }
 
 @keyframes block {
@@ -99,8 +96,8 @@ export default {
   100%{left: -40px}
   //@for $i from 1 through 10 {
   //#{($i * 0.5%)} {
-  //  transform: rotate((480 * 1deg));
-  // }
+    //transform: rotate((480 * 1deg));
+   //}
   //}
 }
 
