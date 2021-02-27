@@ -22,14 +22,23 @@ export default {
       counter: 0,
       score: 0,
       jumpSpeed: 1000, //ms
-      gameSpeed: 3, //s
+      gameSpeed: 2, //s
+      blockWidth: 40, //px
+      blockHeight: 40, //px
+      blockTop: 310, //px
+      blockLeft: 480 //px
     }
   },
   mounted() {
     const characterElement = document.getElementById("character");
     const blockElement = document.getElementById("block");
     blockElement.style.animationDuration = this.gameSpeed + "s";
+    blockElement.style.width = this.blockWidth + "px"
+    blockElement.style.left = this.blockLeft + "px"
+    blockElement.style.height = this.blockHeight + "px"
+    blockElement.style.top = this.blockTop + "px"
 
+    //Score rules
     setInterval(() => {
       let characterTop = parseInt(window.getComputedStyle(characterElement).getPropertyValue("top"));
       let characterWidth = parseInt(window.getComputedStyle(characterElement).getPropertyValue("width"));
@@ -43,7 +52,7 @@ export default {
         this.score = 0;
       } else if (blockLeft < characterWidth && blockLeft > 0 && characterTop < blockTop) {
         this.counter++;
-        this.score = Math.floor(this.counter/this.gameSpeed/(blockWidth/10));
+        this.score = Math.floor(this.counter/this.gameSpeed/blockWidth*10);
       }
     }, 1)
 
@@ -77,15 +86,12 @@ export default {
 }
 
 .jump {
-  animation: jump linear 1s;
+  animation: jump linear;
+  animation-duration: 1s;
 }
 
 #block {
-  height: 40px;
-  width: 40px;
   position: relative;
-  top: 310px;
-  left: 480px;
   animation: block linear infinite;
   animation-duration: 2s;
   background-color: green;
@@ -103,9 +109,9 @@ export default {
 
 @keyframes jump {
   0% {bottom: 300px}
-  20% {top: 200px}
+  20% {top: 175px}
   50% {top: 150px}
-  80% {top: 200px}
+  80% {top: 175px}
   100% {bottom: 300px}
 }
 
