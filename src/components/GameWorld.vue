@@ -9,7 +9,6 @@
 
     </div>
     <div id="block"></div>
-    <div>{{ score }} correct score TBA</div>
   </div>
 </template>
 
@@ -19,12 +18,10 @@ export default {
   data() {
     return {
       activeJump: false,
-      counter: 0,
-      score: 0,
+      worldHeight: 400, // DO NOT CHANGE
       // Game settings
       jumpSpeed: 1000, //ms // TBA
       gameSpeed: 2, //s higher is slower
-      worldHeight: 400, //px
       blockWidth: 280, //px
       blockHeight: 80, //px // TBA
       characterWidth: 36, //px
@@ -53,15 +50,10 @@ export default {
       let characterWidth = parseInt(window.getComputedStyle(characterElement).getPropertyValue("width"));
       let blockTop = parseInt(window.getComputedStyle(blockElement).getPropertyValue("top"));
       let blockLeft = parseInt(window.getComputedStyle(blockElement).getPropertyValue("left"));
-      let blockWidth = parseInt(window.getComputedStyle(blockElement).getPropertyValue("width"));
       if (blockLeft < characterWidth && blockTop < characterTop) {
         blockElement.style.animation = "none";
         blockElement.style.display = "none";
-        alert("You lose, your score is " + this.score);
-        this.score = 0;
-      } else if (blockLeft < characterWidth && blockLeft > 0 && characterTop < blockTop) {
-        this.counter++;
-        this.score = Math.floor(this.counter/this.gameSpeed/blockWidth);
+        alert("You lose");
       }
     }, 1)
 
@@ -82,8 +74,7 @@ export default {
 <style lang="scss">
 #world {
   margin: auto;
-  width: 1000px;
-  border: 1px solid black;
+  border-bottom: 1px solid black;
 }
 #character {
   position: relative;
@@ -99,14 +90,13 @@ export default {
 #block {
   position: relative;
   animation: block linear infinite;
-  animation-duration: 2s;
   background-color: green;
   background-image: url("https://screenshot.click/23-01-q8x9s-t1wjn.png");
 }
 
 @keyframes block {
-  0%{left: 900px}
-  100%{left: -40px}
+  0%{left: 2000px}
+  100%{left: -400px}
 }
 
 @keyframes jump {
