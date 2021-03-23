@@ -9,7 +9,7 @@
 
     </div>
     <div id="block"></div>
-    <div>{{ score }}</div>
+    <div>{{ score }} correct score TBA</div>
   </div>
 </template>
 
@@ -26,17 +26,24 @@ export default {
       blockWidth: 40, //px
       blockHeight: 40, //px
       blockTop: 310, //px
-      blockLeft: 480 //px
+      blockLeft: 480, //px
+      characterWidth: 52, //px
+      characterHeight: 52, //px
     }
   },
   mounted() {
+    // Game Elements
     const characterElement = document.getElementById("character");
     const blockElement = document.getElementById("block");
+
+    // Games Settings based on data() variables
     blockElement.style.animationDuration = this.gameSpeed + "s";
     blockElement.style.width = this.blockWidth + "px"
     blockElement.style.left = this.blockLeft + "px"
     blockElement.style.height = this.blockHeight + "px"
     blockElement.style.top = this.blockTop + "px"
+    characterElement.style.width = this.characterWidth + "px"
+    characterElement.style.height = this.characterHeight + "px"
 
     //Score rules
     setInterval(() => {
@@ -52,7 +59,7 @@ export default {
         this.score = 0;
       } else if (blockLeft < characterWidth && blockLeft > 0 && characterTop < blockTop) {
         this.counter++;
-        this.score = Math.floor(this.counter/this.gameSpeed/blockWidth*10);
+        this.score = Math.floor(this.counter/this.gameSpeed/blockWidth);
       }
     }, 1)
 
@@ -78,8 +85,6 @@ export default {
   border: 1px solid black;
 }
 #character {
-  height: 50px;
-  width: 20px;
   position: relative;
   top: 350px;
   background-color: blue;
@@ -109,5 +114,4 @@ export default {
   80% {top: 175px}
   100% {bottom: 300px}
 }
-
 </style>
