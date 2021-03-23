@@ -25,7 +25,7 @@ export default {
       jumpSpeed: 1000, //ms // TBA
       gameSpeed: 2, //s higher is slower
       worldHeight: 400, //px
-      blockWidth: 160, //px
+      blockWidth: 280, //px
       blockHeight: 80, //px // TBA
       characterWidth: 36, //px
       characterHeight: 36, //px
@@ -101,6 +101,7 @@ export default {
   animation: block linear infinite;
   animation-duration: 2s;
   background-color: green;
+  background-image: url("https://screenshot.click/23-01-q8x9s-t1wjn.png");
 }
 
 @keyframes block {
