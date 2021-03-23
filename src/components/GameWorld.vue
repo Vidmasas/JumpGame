@@ -1,5 +1,5 @@
 <template>
-  <div class="world"
+  <div id="world"
        @click="jumpAction"
   >
     <div
@@ -21,27 +21,29 @@ export default {
       activeJump: false,
       counter: 0,
       score: 0,
-      jumpSpeed: 1000, //ms
-      gameSpeed: 2, //s
-      blockWidth: 40, //px
-      blockHeight: 40, //px
-      blockTop: 310, //px
-      blockLeft: 480, //px
-      characterWidth: 52, //px
-      characterHeight: 52, //px
+      // Game settings
+      jumpSpeed: 1000, //ms // TBA
+      gameSpeed: 2, //s higher is slower
+      worldHeight: 400, //px
+      blockWidth: 160, //px
+      blockHeight: 80, //px // TBA
+      characterWidth: 36, //px
+      characterHeight: 36, //px
     }
   },
   mounted() {
     // Game Elements
     const characterElement = document.getElementById("character");
     const blockElement = document.getElementById("block");
+    const worldElement = document.getElementById("world");
 
     // Games Settings based on data() variables
+    worldElement.style.height = this.worldHeight + "px"
     blockElement.style.animationDuration = this.gameSpeed + "s";
     blockElement.style.width = this.blockWidth + "px"
-    blockElement.style.left = this.blockLeft + "px"
-    blockElement.style.height = this.blockHeight + "px"
-    blockElement.style.top = this.blockTop + "px"
+    blockElement.style.height = this.characterHeight*2 + "px"
+    blockElement.style.top = this.worldHeight - this.characterHeight*3 + "px"
+    characterElement.style.top = this.worldHeight - this.characterHeight + "px"
     characterElement.style.width = this.characterWidth + "px"
     characterElement.style.height = this.characterHeight + "px"
 
@@ -52,7 +54,7 @@ export default {
       let blockTop = parseInt(window.getComputedStyle(blockElement).getPropertyValue("top"));
       let blockLeft = parseInt(window.getComputedStyle(blockElement).getPropertyValue("left"));
       let blockWidth = parseInt(window.getComputedStyle(blockElement).getPropertyValue("width"));
-      if (blockLeft < characterWidth && blockLeft > 0 && characterTop >= blockTop) {
+      if (blockLeft < characterWidth && blockTop < characterTop) {
         blockElement.style.animation = "none";
         blockElement.style.display = "none";
         alert("You lose, your score is " + this.score);
@@ -78,16 +80,15 @@ export default {
 </script>
 
 <style lang="scss">
-.world {
+#world {
   margin: auto;
   width: 1000px;
-  height: 400px;
   border: 1px solid black;
 }
 #character {
   position: relative;
-  top: 350px;
   background-color: blue;
+  background-image: url("https://screenshot.click/23-12-tj21u-te3f4.png");
 }
 
 .jump {
