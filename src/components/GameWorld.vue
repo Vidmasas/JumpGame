@@ -100,11 +100,6 @@ export default {
 @keyframes block {
   0%{left: 900px}
   100%{left: -40px}
-  //@for $i from 1 through 10 {
-  //#{($i * 0.5%)} {
-    //transform: rotate((480 * 1deg));
-   //}
-  //}
 }
 
 @keyframes jump {

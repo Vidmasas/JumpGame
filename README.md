@@ -7,6 +7,8 @@ My first game rebuild from Vanilla JS into Vue.js
 npm install
 ```
 
+If you get `TypeError: this.getOptions is not a function`, then change the version of your sass-loader into `sass-loader@10.1.1` via `package.json`, since Vue.js v2 do not support `sass-loader@11`
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve
