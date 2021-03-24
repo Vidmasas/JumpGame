@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <h1>Jump Game v0.10</h1>
-    <button @click="loadGameWorld">{{ (isGameWorld ? "Back to Settings" : "Start Game") }}</button>
+    <button
+        class="btn btn-primary btn-lg" style="margin-bottom: 10px"
+        @click="loadGameWorld"
+    >
+      {{ (isGameWorld ? "Back to Settings" : "Start Game") }}
+    </button>
     <div v-if="isGameWorld">
       <GameWorld
         :gameSpeed = "gameSpeed"
@@ -11,12 +16,27 @@
         :characterHeight = "characterHeight"
       ></GameWorld>
     </div>
-    <div v-if="!isGameWorld" class="settings">
-      <div><label>Game speed </label><input type="number" v-model="gameSpeed"><span> higher is slower</span></div>
-      <div><label>Block width </label><input type="number" v-model="blockWidth"><span> px</span></div>
-      <div><label>Block height </label><input type="number" v-model="blockHeight"><span> px</span></div>
-      <div><label>Character width </label><input type="number" v-model="characterWidth"><span> px</span></div>
-      <div><label>Character height </label><input type="number" v-model="characterHeight"><span> px</span></div>
+    <div v-if="!isGameWorld" class="settings col-sm-2">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Game Speed</span>
+        <input v-model="gameSpeed" type="number" class="form-control" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      <div class="input-group-prepend">
+        <span class="input-group-text">Block Width</span>
+        <input v-model="blockWidth" type="number" class="form-control" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      <div class="input-group-prepend">
+        <span class="input-group-text">Block Height</span>
+        <input v-model="blockHeight" type="number" class="form-control" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      <div class="input-group-prepend">
+        <span class="input-group-text">Character Width</span>
+        <input v-model="characterWidth" type="number" class="form-control" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      <div class="input-group-prepend">
+        <span class="input-group-text">Character Height</span>
+        <input v-model="characterHeight" type="number" class="form-control" aria-describedby="inputGroup-sizing-sm">
+      </div>
     </div>
   </div>
 </template>
