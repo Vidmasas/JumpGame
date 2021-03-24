@@ -48,7 +48,7 @@ export default {
       if (blockLeft < characterWidth && blockTop < characterTop) {
         blockElement.style.animation = "none";
         blockElement.style.display = "none";
-        alert("You lose");
+        alert("JavaScript beat you!");
       }
     }, 1)
   },
