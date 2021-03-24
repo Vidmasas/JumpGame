@@ -22,7 +22,7 @@ export default {
       // Game settings
       gameSpeed: 2, //s higher is slower
       blockWidth: 280, //px
-      blockHeight: 80, //px // TBA
+      blockHeight: 120, //px
       characterWidth: 36, //px
       characterHeight: 36, //px
     }
@@ -38,12 +38,13 @@ export default {
     worldElement.style.height = this.worldHeight + "px"
     blockElement.style.animationDuration = this.gameSpeed + "s";
     blockElement.style.width = this.blockWidth + "px"
-    blockElement.style.height = this.characterHeight*2 + "px"
-    blockElement.style.top = this.worldHeight - this.characterHeight*3 + "px"
+    blockElement.style.height = this.blockHeight + "px"
+    blockElement.style.top = this.worldHeight - this.blockHeight - this.characterHeight + "px"
     characterElement.style.top = this.worldHeight - this.characterHeight + "px"
     characterElement.style.width = this.characterWidth + "px"
     characterElement.style.height = this.characterHeight + "px"
     characterElement.style.height = this.characterHeight + "px"
+    console.log(blockElement.style.top)
 
     //Score rules
     setInterval(() => {
@@ -98,7 +99,7 @@ export default {
 }
 
 @keyframes block {
-  0%{left: 2000px}
+  0%{left: 3000px}
   100%{left: -400px}
 }
 
