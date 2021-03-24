@@ -14,9 +14,6 @@
 
 <script>
 
-// Pass existing gameSpeed value to parent
-// Pass new gameSpeed value to child
-
 export default {
   props: ['gameSpeed', 'blockWidth', 'blockHeight', 'characterWidth', 'characterHeight'],
   data() {
@@ -31,7 +28,6 @@ export default {
     const blockElement = document.getElementById("block");
     const worldElement = document.getElementById("world");
 
-
     // Games Settings based on data() variables
     worldElement.style.height = this.worldHeight + "px"
     blockElement.style.animationDuration = this.gameSpeed + "s";
@@ -42,7 +38,6 @@ export default {
     characterElement.style.width = this.characterWidth + "px"
     characterElement.style.height = this.characterHeight + "px"
     characterElement.style.height = this.characterHeight + "px"
-    console.log(blockElement.style.top)
 
     //Score rules
     setInterval(() => {
@@ -68,15 +63,6 @@ export default {
         return this.activeJump = true;
       }
     },
-    /*settings() {
-      this.$emit('add-settings',
-          this.gameSpeed,
-          this.blockWidth,
-          this.blockHeight,
-          this.characterWidth,
-          this.characterHeight
-  )
-} */
   },
 }
 </script>

@@ -1,13 +1,23 @@
 <template>
   <div id="app">
     <h1>Jump Game v0.10</h1>
-    <GameWorld
-      :gameSpeed = "gameSpeed"
-      :blockWidth = "blockWidth"
-      :blockHeight = "blockHeight"
-      :characterWidth = "characterWidth"
-      :characterHeight = "characterHeight"
-    ></GameWorld>
+    <button @click="loadTemplate">Load Game</button>
+    <div v-if="buttonClicked">
+      <GameWorld
+        :gameSpeed = "gameSpeed"
+        :blockWidth = "blockWidth"
+        :blockHeight = "blockHeight"
+        :characterWidth = "characterWidth"
+        :characterHeight = "characterHeight"
+      ></GameWorld>
+    </div>
+    <div class="settings">
+      <div><label>Game speed </label><input type="number" v-model="gameSpeed"><span> higher is slower</span></div>
+      <div><label>Block width </label><input type="number" v-model="blockWidth"><span> px</span></div>
+      <div><label>Block height </label><input type="number" v-model="blockHeight"><span> px</span></div>
+      <div><label>Character width </label><input type="number" v-model="characterWidth"><span> px</span></div>
+      <div><label>Character height </label><input type="number" v-model="characterHeight"><span> px</span></div>
+    </div>
   </div>
 </template>
 
@@ -22,15 +32,18 @@ export default {
   data() {
     return {
       // Game settings
-      gameSpeed: 2, //s higher is slower
+      buttonClicked: false,
+      gameSpeed: 4, //s higher is slower
       blockWidth: 280, //px
-      blockHeight: 120, //px
+      blockHeight: 100, //px
       characterWidth: 36, //px
       characterHeight: 36, //px
     }
   },
   methods: {
-
+    loadTemplate() {
+      this.buttonClicked = !this.buttonClicked;
+    }
   }
 }
 </script>
@@ -43,5 +56,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.settings {
+
 }
 </style>
