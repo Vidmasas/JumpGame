@@ -20,7 +20,6 @@ export default {
       activeJump: false,
       worldHeight: 400, // DO NOT CHANGE
       // Game settings
-      jumpSpeed: 1000, //ms // TBA
       gameSpeed: 2, //s higher is slower
       blockWidth: 280, //px
       blockHeight: 80, //px // TBA
@@ -34,6 +33,7 @@ export default {
     const blockElement = document.getElementById("block");
     const worldElement = document.getElementById("world");
 
+
     // Games Settings based on data() variables
     worldElement.style.height = this.worldHeight + "px"
     blockElement.style.animationDuration = this.gameSpeed + "s";
@@ -42,6 +42,7 @@ export default {
     blockElement.style.top = this.worldHeight - this.characterHeight*3 + "px"
     characterElement.style.top = this.worldHeight - this.characterHeight + "px"
     characterElement.style.width = this.characterWidth + "px"
+    characterElement.style.height = this.characterHeight + "px"
     characterElement.style.height = this.characterHeight + "px"
 
     //Score rules
@@ -60,12 +61,14 @@ export default {
   },
   methods: {
     jumpAction() {
-      const that = this
-      setTimeout(() => {
-            return that.activeJump = !that.activeJump;
-          },
-          this.jumpSpeed)
-      return this.activeJump = !this.activeJump;
+      if (!this.activeJump) {
+        const that = this;
+        setTimeout(() => {
+              return that.activeJump = false;
+            },
+            1000)
+        return this.activeJump = true;
+      }
     },
   },
 }
