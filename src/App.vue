@@ -1,7 +1,13 @@
 <template>
   <div id="app">
     <h1>Jump Game v0.10</h1>
-    <GameWorld/>
+    <GameWorld
+      :gameSpeed = "gameSpeed"
+      :blockWidth = "blockWidth"
+      :blockHeight = "blockHeight"
+      :characterWidth = "characterWidth"
+      :characterHeight = "characterHeight"
+    ></GameWorld>
   </div>
 </template>
 
@@ -13,10 +19,18 @@ export default {
   components: {
     GameWorld
   },
-  methods: {
-    test() {
-      console.log("it Works")
+  data() {
+    return {
+      // Game settings
+      gameSpeed: 2, //s higher is slower
+      blockWidth: 280, //px
+      blockHeight: 120, //px
+      characterWidth: 36, //px
+      characterHeight: 36, //px
     }
+  },
+  methods: {
+
   }
 }
 </script>

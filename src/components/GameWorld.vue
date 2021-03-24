@@ -14,17 +14,15 @@
 
 <script>
 
+// Pass existing gameSpeed value to parent
+// Pass new gameSpeed value to child
+
 export default {
+  props: ['gameSpeed', 'blockWidth', 'blockHeight', 'characterWidth', 'characterHeight'],
   data() {
     return {
       activeJump: false,
       worldHeight: 400, // DO NOT CHANGE
-      // Game settings
-      gameSpeed: 2, //s higher is slower
-      blockWidth: 280, //px
-      blockHeight: 120, //px
-      characterWidth: 36, //px
-      characterHeight: 36, //px
     }
   },
   mounted() {
@@ -58,7 +56,6 @@ export default {
         alert("You lose");
       }
     }, 1)
-
   },
   methods: {
     jumpAction() {
@@ -71,6 +68,15 @@ export default {
         return this.activeJump = true;
       }
     },
+    /*settings() {
+      this.$emit('add-settings',
+          this.gameSpeed,
+          this.blockWidth,
+          this.blockHeight,
+          this.characterWidth,
+          this.characterHeight
+  )
+} */
   },
 }
 </script>
