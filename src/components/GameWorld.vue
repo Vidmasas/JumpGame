@@ -74,7 +74,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style>
 #world {
   margin: auto;
   border-bottom: 1px solid black;
