@@ -1,7 +1,5 @@
 <template>
-  <div id="world"
-       @click="jumpAction"
-  >
+  <div id="world">
     <div
         id="character"
         :class="{jump: activeJump}"
@@ -9,16 +7,18 @@
 
     </div>
     <div id="block"></div>
+    <button @click="jumpAction" class="btn-outline-primary">Click me to JUMP!</button>
   </div>
 </template>
 
 <script>
 
 export default {
-  props: ['gameSpeed', 'blockWidth', 'blockHeight', 'characterWidth', 'characterHeight'],
+  props: ['gameSpeed', 'blockHeight', 'characterHeight', 'isGameWorld'],
   data() {
     return {
       activeJump: false,
+      gameLost: false,
       worldHeight: 400, // DO NOT CHANGE
     }
   },
@@ -28,27 +28,34 @@ export default {
     const blockElement = document.getElementById("block");
     const worldElement = document.getElementById("world");
 
+    // Restart Game
+    function restart() {
+      if(this.gameLost) {
+        blockElement.style.animation = 1 + "s";
+        blockElement.style.display = "inline";
+      }
+    }
+
     // Games Settings based on data() variables
     worldElement.style.height = this.worldHeight + "px"
     blockElement.style.animationDuration = this.gameSpeed + "s";
-    blockElement.style.width = this.blockWidth + "px"
+    blockElement.style.width = this.blockHeight*2.8 + "px"
     blockElement.style.height = this.blockHeight + "px"
     blockElement.style.top = this.worldHeight - this.blockHeight - this.characterHeight + "px"
     characterElement.style.top = this.worldHeight - this.characterHeight + "px"
-    characterElement.style.width = this.characterWidth + "px"
-    characterElement.style.height = this.characterHeight + "px"
+    characterElement.style.width = this.characterHeight + "px"
     characterElement.style.height = this.characterHeight + "px"
 
-    //Score rules
+    // Game rules
     setInterval(() => {
       let characterTop = parseInt(window.getComputedStyle(characterElement).getPropertyValue("top"));
       let characterWidth = parseInt(window.getComputedStyle(characterElement).getPropertyValue("width"));
       let blockTop = parseInt(window.getComputedStyle(blockElement).getPropertyValue("top"));
       let blockLeft = parseInt(window.getComputedStyle(blockElement).getPropertyValue("left"));
       if (blockLeft < characterWidth && blockTop < characterTop) {
-        blockElement.style.animation = "none";
-        blockElement.style.display = "none";
+        this.gameLost = true;
         alert("JavaScript beat you!");
+        restart();
       }
     }, 1)
   },

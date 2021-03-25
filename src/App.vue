@@ -10,38 +10,35 @@
     <div v-if="isGameWorld">
       <GameWorld
         :gameSpeed = "gameSpeed"
-        :blockWidth = "blockWidth"
         :blockHeight = "blockHeight"
-        :characterWidth = "characterWidth"
         :characterHeight = "characterHeight"
       ></GameWorld>
     </div>
-    <div v-if="!isGameWorld">
-      <div class="settings col-lx-2 d-flex justify-content-center mb-4">
-        <div class="input-group-prepend p-1">
-          <span class="input-group-text">Game Speed</span>
-          <input v-model="gameSpeed" type="number" class="form-control" aria-describedby="inputGroup-sizing-sm">
+    <form v-if="!isGameWorld">
+      <h5 class="p-1">Me vs JavaScript, it's an endless battle to became a better coder and there are an interactive lessons I've learned.</h5>
+        <div class="bg-light p-2">
+          <p>The faster I go the harder it hits - take the time, <b>do not rush</b> in learning new things.</p>
+          <div class="input-group-prepend p-1">
+            <span class="input-group-text font-weight-bold">Game Speed (lower is faster)</span>
+            <input v-model="gameSpeed" type="number" max="10" min="1" class="form-control font-weight-bold" aria-describedby="inputGroup-sizing-sm">
+          </div>
         </div>
-        <div class="input-group-prepend p-1">
-          <span class="input-group-text">Block Width</span>
-          <input v-model="blockWidth" type="number" class="form-control" aria-describedby="inputGroup-sizing-sm">
+        <div class="p-2">
+          <p>The bigger the project is, the harder to finish - <b>start small</b>, end big.</p>
+          <div class="input-group-prepend p-1">
+            <span class="input-group-text font-weight-bold">Block Height</span>
+            <input v-model="blockHeight" type="number" max="300" min="30" class="form-control font-weight-bold" aria-describedby="inputGroup-sizing-sm">
+          </div>
         </div>
-        <div class="input-group-prepend p-1">
-          <span class="input-group-text">Block Height</span>
-          <input v-model="blockHeight" type="number" class="form-control" aria-describedby="inputGroup-sizing-sm">
+        <div class="bg-light p-2">
+          <p>Learning frameworks or specific libraries at the beginning is not the way to go - <b>start</b> by <b>little</b>, start from basics.</p>
+          <div class="input-group-prepend p-1">
+            <span class="input-group-text font-weight-bold">Character Height</span>
+            <input v-model="characterHeight" type="number" max="200" min="36" class="form-control font-weight-bold" aria-describedby="inputGroup-sizing-sm">
+          </div>
         </div>
-        <div class="input-group-prepend p-1">
-          <span class="input-group-text">Character Width</span>
-          <input v-model="characterWidth" type="number" class="form-control" aria-describedby="inputGroup-sizing-sm">
-        </div>
-        <div class="input-group-prepend p-1">
-          <span class="input-group-text">Character Height</span>
-          <input v-model="characterHeight" type="number" class="form-control" aria-describedby="inputGroup-sizing-sm">
-        </div>
-      </div>
-      <h2>Me vs JavaScript, it's the endless battle to became a better coder</h2>
+      </form>
     </div>
-  </div>
 </template>
 
 <script>
@@ -57,9 +54,7 @@ export default {
       isGameWorld: false,
       // Game settings
       gameSpeed: 4, //s higher is slower
-      blockWidth: 280, //px
       blockHeight: 100, //px
-      characterWidth: 36, //px
       characterHeight: 36, //px
     }
   },
@@ -80,9 +75,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-
-.settings {
-
 }
 </style>
