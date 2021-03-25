@@ -4,7 +4,6 @@
         id="character"
         :class="{jump: activeJump}"
     >
-
     </div>
     <div id="block"></div>
     <button @click="jumpAction" class="btn-outline-primary">Click me to JUMP!</button>

@@ -61,7 +61,6 @@ export default {
   methods: {
     loadGameWorld() {
       this.isGameWorld = !this.isGameWorld;
-
     }
   }
 }
