@@ -2,6 +2,10 @@
 
 My first game rebuild from Vanilla JS into Vue.js
 
+With this game I want to show the obsticles that I have faced on learning to code as well as the lessons I have learned. The game is far from perfect, it will have some bugs if you overstress, but it is in progress, same as my journey in learning to code and be a good developer. 
+
+Enjoy!
+
 ## Project setup
 ```
 npm install
